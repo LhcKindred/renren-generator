@@ -1,0 +1,49 @@
+package ${package}.${moduleName}.service.impl;
+
+import cn.stylefeng.roses.core.page.PageFactory;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import lombok.AllArgsConstructor;
+import java.util.List;
+
+import ${package}.${moduleName}.mapper.${className}Mapper;
+import ${package}.${moduleName}.entity.${className};
+import ${package}.${moduleName}.service.${className}Service;
+
+
+@Service("${classname}Service")
+public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${className}> implements ${className}Service {
+
+    @Autowired
+    private ${className}Mapper ${classname}Mapper;
+
+    @Override
+    public void add(${className} ${classname}){
+        this.save(${classname});
+    }
+
+    @Override
+    public void saveTmp(${className} ${classname}){
+        this.save(${classname});
+    }
+
+    @Override
+    public void updateInfo(${className} ${classname}){
+        this.updateById(${classname});
+    }
+
+    @Override
+    public void delete(${pk.attrType} ${pk.attrname}){
+        this.removeById(${pk.attrname});
+    }
+
+    @Override
+    public Page<${className}> listPage(${className} ${classname}) {
+
+        return this.page(PageFactory.defaultPage(),new QueryWrapper<>(${classname}));
+    }
+
+}

@@ -1,0 +1,63 @@
+package ${package}.${moduleName}.entity;
+
+import com.baomidou.mybatisplus.annotation.*;
+import com.cncec.pms.core.valid.AddGroup;
+import com.cncec.pms.core.valid.UpdateGroup;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Date;
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+
+
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+@ApiModel(value = "${className}", description = "${comments}")
+@TableName("${tableName}")
+public class ${className} implements Serializable{
+private static final long serialVersionUID=1L;
+
+#foreach ($column in $columns)
+#if($column.columnName == $pk.columnName)
+@ApiModelProperty(value = "$column.comments")
+@NotBlank(groups = UpdateGroup.class)
+@TableId(value = "$pk.columnName", type = IdType.ASSIGN_UUID)
+private $column.attrType $column.attrname;
+
+#else
+#if($column.attrType == "String")
+@NotBlank
+@TableField("$column.columnName")
+@ApiModelProperty(value = "$column.comments")
+private $column.attrType $column.attrname;
+
+#elseif($column.attrname.equals("createTime")||$column.attrname.equals("createUser")||$column.attrname.equals("createUserName"))
+@TableField(value = "$column.columnName", fill = FieldFill.INSERT)
+private $column.attrType $column.attrname;
+
+#elseif($column.attrname.equals("updateTime")||$column.attrname.equals("updateUser"))
+@TableField(value = "$column.columnName", fill = FieldFill.UPDATE)
+private $column.attrType $column.attrname;
+
+#else
+@NotNull
+@TableField("$column.columnName")
+@ApiModelProperty(value = "$column.comments")
+private $column.attrType $column.attrname;
+#end
+#end
+#end
+
+}

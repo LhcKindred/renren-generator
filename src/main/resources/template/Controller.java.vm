@@ -1,0 +1,85 @@
+package ${package}.${moduleName}.controller;
+
+import java.util.Arrays;
+import java.util.Map;
+
+
+import cn.stylefeng.roses.kernel.model.response.ResponseData;
+import cn.stylefeng.roses.kernel.scanner.modular.annotation.PostResource;
+import cn.stylefeng.roses.kernel.scanner.modular.stereotype.ApiResource;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cncec.pms.core.valid.UpdateGroup;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import ${package}.${moduleName}.entity.${className};
+import ${package}.${moduleName}.service.${className}Service;
+
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@AllArgsConstructor
+@Api(tags = "${comments}")
+@RequestMapping(value = "/${pathName}")
+public class ${className}Controller {
+
+    private final ${className}Service ${classname}Service;
+
+    @ApiOperation(value = "分页接口", response = ${className}.class)
+    @RequestMapping(value = "/listPage", method = RequestMethod.POST)
+    public ResponseData listPage(@RequestBody ${className} ${classname}) {
+        Page<${className}> resultPage = ${classname}Service.listPage(${classname});
+
+        return ResponseData.success(resultPage);
+    }
+
+    @ApiOperation(value = "详情接口", response = ${className}.class)
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public ResponseData info(@RequestParam("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
+        ${className} ${classname} =${classname}Service.getById(${pk.attrname});
+
+        return ResponseData.success(${classname});
+    }
+
+    @ApiOperation(value = "新增接口")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ResponseData save(@Validated(AddGroup.class) @RequestBody ${className} ${classname}) {
+            ${classname}Service.add(${classname});
+
+        return ResponseData.success();
+    }
+
+    #*@ApiOperation(value = "暂存接口")
+    @PostResource(name = "暂存", path = "/tempSave")
+    public ResponseData saveTmp( @RequestBody ${className} ${classname}) {
+            ${classname}Service.saveTmp(${classname});
+
+        return ResponseData.success();
+    }*#
+    @ApiOperation(value = "修改")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseData update(@Validated(UpdateGroup.class) @RequestBody ${className} ${classname}) {
+            ${classname}Service.updateInfo(${classname});
+
+        return ResponseData.success();
+    }
+
+    @ApiOperation(value = "删除")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public ResponseData delete(@RequestParam ${pk.attrType} ${pk.attrname}) {
+            ${classname}Service.delete(${pk.attrname});
+
+        return ResponseData.success();
+    }
+
+}
