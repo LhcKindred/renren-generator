@@ -46,4 +46,9 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
         return this.page(PageFactory.defaultPage(),new QueryWrapper<>(${classname}));
     }
 
+    @Override
+    public ${className} info(${className} ${classname}) {
+        return null;
+    }
+
 }
