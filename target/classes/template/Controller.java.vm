@@ -15,9 +15,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ${package}.${moduleName}.entity.${className};
 import ${package}.${moduleName}.service.${className}Service;
@@ -32,57 +30,52 @@ import ${package}.${moduleName}.service.${className}Service;
 @RestController
 @AllArgsConstructor
 @Api(tags = "${comments}")
-@ApiResource(name = "${comments}Controller", path = "/${pathName}")
+@RequestMapping(value = "/${pathName}")
 public class ${className}Controller {
 
     private final ${className}Service ${classname}Service;
 
-    @GetResource(name = "分页", path = "listPage")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "pageSize", dataType = "Long", value = "每页条数"),
-            @ApiImplicitParam(paramType = "query", name = "pageNo", dataType = "Long", value = "页码")
-    })
     @ApiOperation(value = "分页接口", response = ${className}.class)
-    public ResponseData listPage(${className} ${classname}) {
+    @RequestMapping(value = "/listPage", method = RequestMethod.POST)
+    public ResponseData listPage(@RequestBody ${className} ${classname}) {
         Page<${className}> resultPage = ${classname}Service.listPage(${classname});
 
         return ResponseData.success(resultPage);
     }
 
     @ApiOperation(value = "详情接口", response = ${className}.class)
-    @GetResource(name = "详情", path = "/info/{${pk.attrname}}")
-    public ResponseData info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public ResponseData info(@RequestParam("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
         ${className} ${classname} =${classname}Service.getById(${pk.attrname});
 
         return ResponseData.success(${classname});
     }
 
-   #* @ApiOperation(value = "新增接口")
-    @PostResource(name = "新增", path = "/save")
+    @ApiOperation(value = "新增接口")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseData save(@Validated(AddGroup.class) @RequestBody ${className} ${classname}) {
             ${classname}Service.add(${classname});
 
         return ResponseData.success();
-    }*#
+    }
 
-    @ApiOperation(value = "暂存接口")
-    @PostResource(name = "暂存", path = "/tmpSave")
+    #*@ApiOperation(value = "暂存接口")
+    @PostResource(name = "暂存", path = "/tempSave")
     public ResponseData saveTmp( @RequestBody ${className} ${classname}) {
             ${classname}Service.saveTmp(${classname});
 
         return ResponseData.success();
-    }
-#*
+    }*#
     @ApiOperation(value = "修改")
-    @PostResource(name = "修改", path = "/update")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseData update(@Validated(UpdateGroup.class) @RequestBody ${className} ${classname}) {
             ${classname}Service.updateInfo(${classname});
 
         return ResponseData.success();
-    }*#
+    }
 
     @ApiOperation(value = "删除")
-    @PostResource(name = "删除", path = "/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResponseData delete(@RequestParam ${pk.attrType} ${pk.attrname}) {
             ${classname}Service.delete(${pk.attrname});
 

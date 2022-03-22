@@ -45,7 +45,7 @@ public class ${className}Controller {
     @ApiOperation(value = "详情接口", response = ${className}.class)
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public ResponseData info(@RequestParam("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
-        ${className} ${classname} =${classname}Service.getById(${pk.attrname});
+        ${className} ${classname} =${classname}Service.info(${pk.attrname});
 
         return ResponseData.success(${classname});
     }

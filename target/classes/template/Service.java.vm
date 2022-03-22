@@ -22,6 +22,8 @@ public interface ${className}Service extends IService<${className}> {
 
     Page<${className}> listPage(${className} ${classname});
 
-    void saveTmp(${className} ${classname});
+    ${className} info(${className} ${classname});
+
+##    void saveTmp(${className} ${classname});
 }
 
