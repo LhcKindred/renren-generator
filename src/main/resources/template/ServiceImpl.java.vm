@@ -25,10 +25,10 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
         this.save(${classname});
     }
 
-    @Override
+#*    @Override
     public void saveTmp(${className} ${classname}){
         this.save(${classname});
-    }
+    }*#
 
     @Override
     public void updateInfo(${className} ${classname}){
