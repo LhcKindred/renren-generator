@@ -24,6 +24,6 @@ public interface ${className}Service extends IService<${className}> {
 
     ${className} info(${pk.attrType} ${pk.attrname});
 
-##    void saveTmp(${className} ${classname});
+    void saveTmp(${className} ${classname});
 }
 

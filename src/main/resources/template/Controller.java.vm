@@ -29,13 +29,13 @@ import ${package}.${moduleName}.service.${className}Service;
 @RestController
 @AllArgsConstructor
 @Api(tags = "${comments}")
-@RequestMapping(value = "/${pathName}")
+@ApiResource(name = "${comments}", path = "/${pathName}")
 public class ${className}Controller {
 
     private final ${className}Service ${classname}Service;
 
     @ApiOperation(value = "分页接口", response = ${className}.class)
-    @RequestMapping(value = "/listPage", method = RequestMethod.POST)
+    @PostResource(name = "详情", path = "/listPage")
     public ResponseData listPage(@RequestBody ${className} ${classname}) {
         Page<${className}> resultPage = ${classname}Service.listPage(${classname});
 
@@ -43,7 +43,7 @@ public class ${className}Controller {
     }
 
     @ApiOperation(value = "详情接口", response = ${className}.class)
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @GetResource(name = "详情", path = "/info")
     public ResponseData info(@RequestParam("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
         ${className} ${classname} =${classname}Service.info(${pk.attrname});
 
@@ -51,22 +51,23 @@ public class ${className}Controller {
     }
 
     @ApiOperation(value = "新增接口")
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @PostResource(name = "新增", path = "/add")
     public ResponseData add(@RequestBody ${className} ${classname}) {
             ${classname}Service.add(${classname});
 
         return ResponseData.success();
     }
 
-    #*@ApiOperation(value = "暂存接口")
+    @ApiOperation(value = "暂存接口")
     @PostResource(name = "暂存", path = "/tempSave")
-    public ResponseData saveTmp( @RequestBody ${className} ${classname}) {
+    public ResponseData saveTmp(@RequestBody ${className} ${classname}) {
             ${classname}Service.saveTmp(${classname});
 
         return ResponseData.success();
-    }*#
+    }
+
     @ApiOperation(value = "修改")
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @PostResource(name = "修改", path = "/update")
     public ResponseData update(@RequestBody ${className} ${classname}) {
             ${classname}Service.updateInfo(${classname});
 
@@ -74,7 +75,7 @@ public class ${className}Controller {
     }
 
     @ApiOperation(value = "删除")
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @PostResource(name = "删除", path = "/delete")
     public ResponseData delete(@RequestParam ${pk.attrType} ${pk.attrname}) {
             ${classname}Service.delete(${pk.attrname});
 
