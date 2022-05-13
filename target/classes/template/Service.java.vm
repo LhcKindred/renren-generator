@@ -22,7 +22,7 @@ public interface ${className}Service extends IService<${className}> {
 
     Page<${className}> listPage(${className} ${classname});
 
-    ${className} info(${className} ${classname});
+    ${className} info(${pk.attrType} ${pk.attrname});
 
 ##    void saveTmp(${className} ${classname});
 }

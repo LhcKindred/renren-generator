@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 import ${package}.${moduleName}.mapper.${className}Mapper;
@@ -21,21 +23,24 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
     private ${className}Mapper ${classname}Mapper;
 
     @Override
+    @Transactional(rollbackFor = Exception)
     public void add(${className} ${classname}){
         this.save(${classname});
     }
 
-    @Override
+#*    @Override
     public void saveTmp(${className} ${classname}){
         this.save(${classname});
-    }
+    }*#
 
     @Override
+    @Transactional(rollbackFor = Exception)
     public void updateInfo(${className} ${classname}){
         this.updateById(${classname});
     }
 
     @Override
+    @Transactional(rollbackFor = Exception)
     public void delete(${pk.attrType} ${pk.attrname}){
         this.removeById(${pk.attrname});
     }
@@ -47,7 +52,7 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
     }
 
     @Override
-    public ${className} info(${className} ${classname}) {
+    public ${className} info(${pk.attrType} ${pk.attrname})) {
         return null;
     }
 
