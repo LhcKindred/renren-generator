@@ -16,6 +16,8 @@ public interface ${className}Service extends IService<${className}> {
 
     void add(${className} ${classname});
 
+    void saveTmp(${className} ${classname});
+
     void updateInfo(${className} ${classname});
 
     void delete(${pk.attrType} ${pk.attrname});
@@ -23,7 +25,5 @@ public interface ${className}Service extends IService<${className}> {
     Page<${className}> listPage(${className} ${classname});
 
     ${className} info(${pk.attrType} ${pk.attrname});
-
-    void saveTmp(${className} ${classname});
 }
 
