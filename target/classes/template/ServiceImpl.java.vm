@@ -23,36 +23,37 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
     private ${className}Mapper ${classname}Mapper;
 
     @Override
-    @Transactional(rollbackFor = Exception)
-    public void add(${className} ${classname}){
+    @Transactional(rollbackFor = Exception.class)
+    public void add(${className} ${classname}) {
         this.save(${classname});
     }
 
     @Override
-    public void saveTmp(${className} ${classname}){
+    @Transactional(rollbackFor = Exception.class)
+    public void saveTmp(${className} ${classname}) {
         this.save(${classname});
     }
 
     @Override
-    @Transactional(rollbackFor = Exception)
-    public void updateInfo(${className} ${classname}){
+    @Transactional(rollbackFor = Exception.class)
+    public void updateInfo(${className} ${classname}) {
         this.updateById(${classname});
     }
 
     @Override
-    @Transactional(rollbackFor = Exception)
-    public void delete(${pk.attrType} ${pk.attrname}){
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(${pk.attrType} ${pk.attrname}) {
         this.removeById(${pk.attrname});
     }
 
     @Override
     public Page<${className}> listPage(${className} ${classname}) {
 
-        return this.page(PageFactory.defaultPage(),new QueryWrapper<>(${classname}));
+        return this.page(PageFactory.defaultPage(), new QueryWrapper<>(${classname}));
     }
 
     @Override
-    public ${className} info(${pk.attrType} ${pk.attrname})) {
+    public ${className} info(${pk.attrType} ${pk.attrname}) {
         return null;
     }
 

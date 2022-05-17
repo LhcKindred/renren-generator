@@ -60,7 +60,7 @@ public class ${className}Controller {
 
     @ApiOperation(value = "暂存接口")
     @PostResource(name = "暂存", path = "/tempSave")
-    public ResponseData saveTmp( @RequestBody ${className} ${classname}) {
+    public ResponseData saveTmp(@RequestBody ${className} ${classname}) {
             ${classname}Service.saveTmp(${classname});
 
         return ResponseData.success();
