@@ -45,7 +45,7 @@ public class ${className}Controller {
     @ApiOperation(value = "详情接口", response = ${className}.class)
     @GetResource(name = "详情", path = "/info")
     public ResponseData info(@RequestParam("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
-        ${className} ${classname} =${classname}Service.info(${pk.attrname});
+        ${className} ${classname} = ${classname}Service.info(${pk.attrname});
 
         return ResponseData.success(${classname});
     }
