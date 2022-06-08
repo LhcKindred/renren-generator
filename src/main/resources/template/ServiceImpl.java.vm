@@ -31,7 +31,7 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void saveTmp(${className} ${classname}) {
-        this.save(${classname});
+        this.saveOrUpdate(${classname});
     }
 
     @Override
