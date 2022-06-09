@@ -32,33 +32,33 @@ public class ${className} implements Serializable{
 
 #foreach ($column in $columns)
     #if($column.columnName == $pk.columnName)
-        @ApiModelProperty(value = "$column.comments")
-        @NotBlank(groups = UpdateGroup.class)
-        @TableId(value = "$pk.columnName", type = IdType.ASSIGN_UUID)
-        private $column.attrType $column.attrname;
+    @ApiModelProperty(value = "$column.comments")
+    @NotBlank(groups = UpdateGroup.class)
+    @TableId(value = "$pk.columnName", type = IdType.ASSIGN_UUID)
+    private $column.attrType $column.attrname;
 
     #else
-        #if($column.attrType == "String")
-            @NotBlank
-            @TableField("$column.columnName")
-            @ApiModelProperty(value = "$column.comments")
-            private $column.attrType $column.attrname;
-
-        #elseif($column.attrname.equals("createTime")||$column.attrname.equals("createUser")||$column.attrname.equals("createUserName"))
-            @ApiModelProperty(value = "$column.comments")
-            @TableField(value = "$column.columnName", fill = FieldFill.INSERT)
-            private $column.attrType $column.attrname;
+        #if($column.attrname.equals("createTime")||$column.attrname.equals("createUser")||$column.attrname.equals("createUserName"))
+        @ApiModelProperty(value = "$column.comments")
+        @TableField(value = "$column.columnName", fill = FieldFill.INSERT)
+        private $column.attrType $column.attrname;
 
         #elseif($column.attrname.equals("updateTime")||$column.attrname.equals("updateUser"))
-            @ApiModelProperty(value = "$column.comments")
-            @TableField(value = "$column.columnName", fill = FieldFill.UPDATE)
-            private $column.attrType $column.attrname;
+        @ApiModelProperty(value = "$column.comments")
+        @TableField(value = "$column.columnName", fill = FieldFill.UPDATE)
+        private $column.attrType $column.attrname;
+
+        #elseif($column.attrType == "String")
+        @NotBlank
+        @TableField("$column.columnName")
+        @ApiModelProperty(value = "$column.comments")
+        private $column.attrType $column.attrname;
 
         #else
-            @NotNull
-            @TableField("$column.columnName")
-            @ApiModelProperty(value = "$column.comments")
-            private $column.attrType $column.attrname;
+        @NotNull
+        @TableField("$column.columnName")
+        @ApiModelProperty(value = "$column.comments")
+        private $column.attrType $column.attrname;
 
         #end
     #end
