@@ -49,7 +49,7 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
     @Override
     public Page<${className}> listPage(${className} ${classname}) {
 
-        return ${classname}Mapper.listPage(PageFactory.defaultPage(), ${classname});
+        return this.page(PageFactory.defaultPage(), new QueryWrapper<>(${classname}));
     }
 
     @Override

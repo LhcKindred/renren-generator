@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface ${className}Mapper extends BaseMapper<${className}> {
-    Page<${className}> listPage(Page<Object> defaultPage, @Param("vo") ${className} vo, Range<Long> newOrgRange);
+
 }
